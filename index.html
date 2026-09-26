@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3 Jam Jadi Game Developer: Bikin Game Bouncing Catch dengan Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ Syntax highlighting (Pygments · One Dark) ============ */
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.hl .hll { background-color: #264F78 } /* VSCode Selection */
+.hl { background: #1E1E1E; color: #D4D4D4; border-radius: 12px; } /* VSCode Dark+ Background */
+.hl .c { color: #6A9955; font-style: normal } /* Comment (Olive) */
+.hl .err { color: #F44747 } /* Error */
+.hl .esc { color: #D7BA7D } /* Escape */
+.hl .g { color: #D4D4D4 } /* Generic */
+.hl .k { color: #C586C0; font-weight: normal } /* Control Flow Keyword (Purple) */
+.hl .l { color: #D4D4D4 } /* Literal */
+.hl .n { color: #9CDCFE } /* Variable Name (Light Blue) */
+.hl .o { color: #D4D4D4 } /* Operator */
+.hl .x { color: #D4D4D4 } /* Other */
+.hl .p { color: #D4D4D4 } /* Punctuation */
+.hl .ch { color: #6A9955 } /* Comment.Hashbang */
+.hl .cm { color: #6A9955 } /* Comment.Multiline */
+.hl .cp { color: #C586C0 } /* Comment.Preproc */
+.hl .cpf { color: #6A9955 } /* Comment.PreprocFile */
+.hl .c1 { color: #6A9955; font-style: normal } /* Comment.Single */
+.hl .cs { color: #6A9955 } /* Comment.Special */
+.hl .gd { color: #F44747 } /* Generic.Deleted */
+.hl .ge { font-style: italic } /* Generic.Emph */
+.hl .ges { font-weight: bold } /* Generic.EmphStrong */
+.hl .gr { color: #F44747 } /* Generic.Error */
+.hl .gh { font-weight: bold } /* Generic.Heading */
+.hl .gi { color: #B5CEA8 } /* Generic.Inserted */
+.hl .go { color: #D4D4D4 } /* Generic.Output */
+.hl .gp { color: #D4D4D4 } /* Generic.Prompt */
+.hl .gs { font-weight: bold } /* Generic.Strong */
+.hl .gu { font-weight: bold } /* Generic.Subheading */
+.hl .gt { color: #F44747 } /* Generic.Traceback */
+.hl .kc { color: #569CD6; font-weight: normal } /* Keyword.Constant (True/False - Blue) */
+.hl .kd { color: #569CD6; font-weight: normal } /* Keyword.Declaration (def/class - Blue) */
+.hl .kn { color: #C586C0; font-weight: normal } /* Keyword.Namespace (import/from - Purple) */
+.hl .kp { color: #C586C0 } /* Keyword.Pseudo */
+.hl .kr { color: #C586C0 } /* Keyword.Reserved */
+.hl .kt { color: #4EC9B0 } /* Keyword.Type (Classes/Types - Teal) */
+.hl .ld { color: #D4D4D4 } /* Literal.Date */
+.hl .m { color: #B5CEA8 } /* Literal.Number (Light Green) */
+.hl .s { color: #CE9178 } /* Literal.String (Rust Orange) */
+.hl .na { color: #9CDCFE } /* Name.Attribute (Light Blue) */
+.hl .nb { color: #DCDCAA } /* Name.Builtin (Yellow) */
+.hl .nc { color: #4EC9B0 } /* Name.Class (Teal) */
+.hl .no { color: #4FC1FF } /* Name.Constant (Blue) */
+.hl .nd { color: #DCDCAA } /* Name.Decorator */
+.hl .ni { color: #D4D4D4 } /* Name.Entity */
+.hl .ne { color: #4EC9B0 } /* Name.Exception */
+.hl .nf { color: #DCDCAA } /* Name.Function (Yellow) */
+.hl .nl { color: #D4D4D4 } /* Name.Label */
+.hl .nn { color: #4EC9B0 } /* Name.Namespace (Module names) */
+.hl .nx { color: #9CDCFE } /* Name.Other (Variables - Light Blue) */
+.hl .py { color: #9CDCFE } /* Name.Property */
+.hl .nt { color: #569CD6 } /* Name.Tag */
+.hl .nv { color: #9CDCFE } /* Name.Variable */
+.hl .ow { color: #569CD6 } /* Operator.Word (and/or/not/in - Blue) */
+.hl .w { color: #D4D4D4 } /* Text.Whitespace */
+.hl .mb { color: #B5CEA8 } /* Literal.Number.Bin */
+.hl .mf { color: #B5CEA8 } /* Literal.Number.Float */
+.hl .mh { color: #B5CEA8 } /* Literal.Number.Hex */
+.hl .mi { color: #B5CEA8 } /* Literal.Number.Integer */
+.hl .mo { color: #B5CEA8 } /* Literal.Number.Oct */
+.hl .sa { color: #569CD6 } /* Literal.String.Affix (f-string) */
+.hl .sb { color: #CE9178 } /* Literal.String.Backtick */
+.hl .sc { color: #CE9178 } /* Literal.String.Char */
+.hl .dl { color: #CE9178 } /* Literal.String.Delimiter */
+.hl .sd { color: #CE9178 } /* Literal.String.Doc */
+.hl .s2 { color: #CE9178 } /* Literal.String.Double */
+.hl .se { color: #D7BA7D } /* Literal.String.Escape */
+.hl .sh { color: #CE9178 } /* Literal.String.Heredoc */
+.hl .si { color: #9CDCFE } /* Literal.String.Interpol */
+.hl .sx { color: #CE9178 } /* Literal.String.Other */
+.hl .sr { color: #D16969 } /* Literal.String.Regex */
+.hl .s1 { color: #CE9178 } /* Literal.String.Single */
+.hl .ss { color: #CE9178 } /* Literal.String.Symbol */
+.hl .bp { color: #DCDCAA } /* Name.Builtin.Pseudo */
+.hl .fm { color: #DCDCAA } /* Name.Function.Magic */
+.hl .vc { color: #9CDCFE } /* Name.Variable.Class */
+.hl .vg { color: #9CDCFE } /* Name.Variable.Global */
+.hl .vi { color: #9CDCFE } /* Name.Variable.Instance */
+.hl .vm { color: #9CDCFE } /* Name.Variable.Magic */
+.hl .il { color: #B5CEA8 } /* Literal.Number.Integer.Long */
+/* ============ Tokens ============ */
+:root {
+  --bg-color: #EEF2FF; /* Indigo sangat muda (lembut, tidak mencolok) */
+  --paper: #FFFFFF;
+  --paper-line: #E2E8F0;
+  --ink: #334155;
+  --heading: #1E293B; /* Teks Slate gelap */
+  --ink-faint: #94A3B8;
+  --accent-color: #06B6D4; /* Cyan terang */
+  --accent-gradient: linear-gradient(135deg, #06B6D4, #3B82F6); /* Cyan ke Biru */
+  --callout-bg: #FEF3C7; /* Kuning pastel */
+  --callout-border: #F59E0B; /* Orange */
+  --code-bg: #1e1e2e;
+  --radius-page: 24px;
+  --radius-sm: 16px;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+
+body {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--bg-color);
+
+  background-image: radial-gradient(#CBD5E1 2px, transparent 2px);
+  background-size: 32px 32px;
+}
+
+.book{
+  max-width: 900px;
+  margin: 0; width: 100%;
+  padding: 3.5rem 1.25rem 6rem;
+}
+
+
+/* ============ Layout & Sidebar ============ */
+.layout-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.sidebar {
+  position: sticky;
+  top: 3rem; /* Jarak dari atas layar */
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--paper);
+  padding: 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--paper-line);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+
+.sidebar-section {
+  font-family: "Outfit", sans-serif;
+  font-weight: 700;
+  color: var(--heading);
+  font-size: 0.95rem;
+  margin-top: 1.2rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dashed var(--paper-line);
+}
+.sidebar-section:first-of-type { margin-top: 0; }
+.sidebar h4 {
+  margin: 0 0 1rem 0;
+  color: var(--heading);
+  font-family: "Outfit", sans-serif;
+  font-size: 1.2rem;
+  border-bottom: 2px solid var(--paper-line);
+  padding-bottom: 0.5rem;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: var(--ink-faint);
+  font-weight: 500;
+  padding: 0.35rem 0.8rem; font-size: 0.9rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+
+.sidebar a.active {
+  background: var(--callout-bg);
+  color: var(--accent-color);
+  font-weight: 700;
+  border-left: 4px solid var(--accent-color);
+  border-radius: 0 8px 8px 0; /* Flat di kiri karena ada border */
+  transform: translateX(2px);
+}
+
+.sidebar a:hover {
+  background: var(--callout-bg);
+  color: var(--accent-color);
+  transform: translateX(5px);
+}
+
+/* Sembunyikan sidebar di layar kecil (HP/Tablet kecil) agar tidak sempit */
+@media (max-width: 1024px) {
+  .sidebar { display: none; }
+  .layout-wrapper { padding: 1rem; }
+  .book { padding: 1.5rem 0.5rem 4rem; }
+  .page { padding: 3rem 2.5rem; }
+}
+
+/* ============ Page shell ============ */
+.page{
+  background: var(--paper);
+  border-radius: var(--radius-page);
+  border: 2px solid #FFFFFF; box-shadow: 0 12px 30px rgba(59, 130, 246, 0.08), 0 4px 6px rgba(0, 0, 0, 0.02);
+  padding: 4.25rem 4.5rem;
+}
+@media (max-width: 768px) {
+  .book{ padding: 1.75rem 0.8rem 4rem; }
+  .page{ padding: 2.5rem 1.8rem; }
+  .cover-page{ padding-top: 3.5rem; padding-bottom: 3rem; }
+  .chapter-page{ padding-top: 3rem; }
+  .chapter-body > h2 { font-size: 1.3rem; margin: 2.2rem 0 1rem; }
+  .chapter-body, .preface-page, .toc-page { font-size: 1rem; line-height: 1.6; }
+  
+  table.styled-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .book{ padding: 1rem 0.4rem 3rem; }
+  .page{ padding: 2rem 1.25rem; }
+  .chapter-head{ margin-bottom: 2rem; }
+  .cover-page blockquote { max-width: 100%; padding: 1.2rem; }
+  .code-block pre { padding: 1rem 1rem 1.2rem; }
+}
+
+.page-divider{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 3.25rem 2rem;
+}
+.page-divider span{ flex: 1 1 auto; height: 1px; background: var(--paper-line); }
+.page-divider i{ width: 7px; height: 7px; border-radius: 50%; background: var(--accent-color); display: inline-block; border: 2px solid #FFFFFF; box-shadow: 0 12px 30px rgba(59, 130, 246, 0.08), 0 4px 6px rgba(0, 0, 0, 0.02); }
+
+/* ============ Cover ============ */
+.cover-page{ text-align: center; padding-top: 5.5rem; padding-bottom: 5rem; }
+.cover-kicker{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--accent-color);
+  margin-bottom: 1.6rem;
+}
+.book-title{
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 650;
+  font-size: clamp(2.1rem, 4.4vw, 3.35rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 auto 1.9rem;
+  max-width: 15ch;
+  color: var(--ink);
+}
+.cover-page hr{
+  width: 90px;
+  margin: 1.9rem auto 1.9rem;
+  border: none;
+  border-top: 2px solid var(--accent-color);
+}
+.cover-page h3{
+  font-family: "Inter", sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.18rem;
+  color: var(--ink);
+  max-width: 34ch;
+  margin: 0 auto 2.4rem;
+  line-height: 1.55;
+}
+.cover-page blockquote{
+  text-align: center;
+  max-width: 50ch;
+  margin: 2.6rem auto 0;
+  background: transparent;
+  border: 1px solid var(--paper-line);
+  border-top: 3px solid var(--accent-color);
+  border-radius: var(--radius-chip);
+  padding: 1.6rem 1.9rem;
+  font-style: normal;
+}
+.cover-page blockquote p{ margin: 0.5rem 0 0; color: var(--ink-faint); text-wrap: balance; line-height: 1.6; }
+.cover-page blockquote p:first-child{ margin-top: 0; }
+.cover-page blockquote strong{ color: var(--ink); }
+
+/* ============ Table of contents ============ */
+.toc-page h2:first-child, .preface-page h2:first-child{
+  font-family: "Outfit", sans-serif;
+  font-weight: 650;
+  font-size: 1.9rem;
+  margin: 0 0 2.2rem;
+  color: var(--ink);
+}
+.toc-page ul{ list-style: none; margin: 0; padding: 0; }
+.toc-page > ul > li{
+  font-weight: 600;
+  font-size: 1.06rem;
+  padding: 0.85rem 0 0.85rem 0;
+  border-bottom: 1px solid var(--paper-line);
+}
+.toc-page > ul > li:last-child{ border-bottom: none; }
+.toc-page ul ul{ list-style: none; margin: 0.7rem 0 0.2rem; padding-left: 1.4rem; border-left: 1px solid var(--paper-line); }
+.toc-page ul ul li{
+  font-weight: 400;
+  font-size: 0.93rem;
+  color: var(--ink);
+  padding: 0.32rem 0;
+}
+.toc-page li strong{ color: var(--accent-color); }
+
+/* ============ Chapter header ============ */
+.chapter-page{ padding-top: 4rem; }
+.chapter-head{ margin-bottom: 3rem; }
+.chapter-num {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  background: var(--accent-gradient);
+  padding: 0.5rem 1.2rem;
+  border-radius: 24px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+  font-weight: 800;
+}
+.chapter-title{
+  font-family: "Outfit", sans-serif;
+  font-weight: 650;
+  font-size: clamp(1.7rem, 3.4vw, 2.35rem);
+  line-height: 1.18;
+  margin: 0;
+  color: var(--ink);
+  max-width: 22ch;
+}
+
+/* ============ Body typography ============ */
+.chapter-body, .preface-page, .toc-page{
+  font-size: 1.05rem;
+  line-height: 1.78;
+  color: var(--ink);
+}
+.chapter-body p, .preface-page p{ margin: 0 0 1.15rem; }
+.chapter-body > h2{
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin: 3rem 0 1.1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--paper-line);
+}
+.chapter-body > h3{
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1.16rem;
+  color: var(--accent-color);
+  margin: 2.3rem 0 0.9rem;
+}
+.chapter-body strong{ color: var(--ink); font-weight: 600; }
+.chapter-body em{ color: var(--ink); }
+.chapter-body a{ color: var(--accent-color); }
+.chapter-body ul, .chapter-body ol{ padding-left: 1.35rem; margin: 0 0 1.15rem; }
+.chapter-body li{ margin: 0.3rem 0; }
+.chapter-body hr{
+  border: none;
+  border-top: 1px solid var(--paper-line);
+  width: 55%;
+  margin: 2.6rem auto;
+}
+code{
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.87em;
+  background: rgba(120, 120, 120, 0.15); /* Transparan netral, cocok di Terang & Gelap */
+  color: var(--accent-color); /* Menggunakan warna Cyan dari sistem agar ngejreng */
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+}
+h1 code, h2 code, h3 code{ background: none; padding: 0; color: inherit; }
+
+/* ============ Media ============ */
+img, video { max-width: 100%; height: auto; display: block; margin: 1rem auto; }
+
+/* ============ Callouts (blockquote) ============ */
+blockquote.callout {
+  margin: 2rem 0;
+  padding: 1.5rem 1.5rem 1.5rem 2rem;
+  border-radius: var(--radius-sm);
+  background: var(--callout-bg);
+  border-left: 6px solid var(--callout-border);
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+blockquote.callout p{ margin: 0.5rem 0 0; }
+blockquote.callout p:first-child{ margin-top: 0; }
+blockquote.callout-note{
+  background: var(--callout-bg);
+  border-left: 3px solid var(--accent-color);
+  color: var(--ink);
+}
+blockquote.callout-warning{
+  background: var(--callout-bg);
+  border-left: 3px solid var(--callout-border);
+  color: var(--ink);
+}
+
+/* ============ Tables ============ */
+table.styled-table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6rem 0 2rem;
+  font-size: 0.94rem;
+  font-family: "Inter", sans-serif;
+}
+table.styled-table th{
+  background: var(--callout-bg);
+  color: #5C4310;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 2px solid var(--accent-color);
+}
+table.styled-table td{
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--paper-line);
+  vertical-align: top;
+}
+table.styled-table tr:last-child td{ border-bottom: none; }
+table.styled-table code{ font-size: 0.85em; }
+
+/* ============ Code blocks ============ */
+.file-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--accent-color);
+  background: var(--callout-bg);
+  border-radius: var(--radius-chip) var(--radius-chip) 0 0;
+  padding: 0.4rem 0.85rem;
+  margin: 1.4rem 0 -1px;
+  border: 1px solid rgba(180,132,46,0.35);
+  border-bottom: none;
+}
+.file-badge-icon{ opacity: 0.75; }
+.file-badge code{ background: none; padding: 0; color: inherit; font-weight: 600; }
+.file-badge + .code-block{ margin-top: 0; border-top-left-radius: 0; }
+
+.code-block{
+  
+  border-radius: var(--radius-page);
+  margin: 1.4rem 0 1.8rem;
+  overflow: hidden;
+  border: 2px solid #FFFFFF; box-shadow: 0 12px 30px rgba(59, 130, 246, 0.08), 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+.code-chrome{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.9rem;
+  background: #0F172A;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.code-dots{ display: inline-flex; gap: 5px; }
+.code-dots i{ width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.16); display: inline-block; }
+.code-lang{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.45);
+  text-transform: lowercase;
+}
+.code-block pre{
+  margin: 0;
+  padding: 1.15rem 1.4rem 1.35rem;
+  overflow-x: auto;
+}
+.code-block code{
+  background: none;
+  padding: 0;
+  color: #ABB2BF;
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+
+/* ============ Print ============ */
+@media print{
+  body { background: #fff; 
+  background-image: radial-gradient(#CBD5E1 2px, transparent 2px);
+  background-size: 32px 32px;
+}
+  .book{ max-width: none; padding: 0; }
+  .page{ border: 2px solid #FFFFFF; box-shadow: 0 12px 30px rgba(59, 130, 246, 0.08), 0 4px 6px rgba(0, 0, 0, 0.02); border-radius: 0; padding: 1.2in; page-break-after: always; }
+  .page-divider{ display: none; }
+  .code-block{ border: 2px solid var(--paper-line); box-shadow: 0 12px 30px rgba(59, 130, 246, 0.08), 0 4px 6px rgba(0, 0, 0, 0.02); }
+}
+
+/* ============ Page Footer ============ */
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem !important;
+  /* Membuat proporsi tinggi kertas seperti A4 (1 : 1.414) */
+  min-height: 1272px; height: auto; /* Kertas minimal seukuran A4, tapi bisa memanjang jika teks banyak */
+  overflow-y: visible; /* Biarkan teks tumpah memperpanjang kertas agar tidak terpotong */ 
+}
+
+@media (max-width: 768px) {
+  .page { 
+    height: auto !important; 
+    min-height: 100vh; 
+    overflow-y: visible !important; 
+    border-radius: 0; 
+    border-left: none; 
+    border-right: none;
+  } 
+  .layout-wrapper {
+    padding: 0; /* Hapus padding agar kertas mentok ke pinggir HP */
+    margin: 0;
+  }
+}
+
+.page-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  border-top: 2px dashed var(--paper-line);
+}
+
+
+/* Auto Page Numbering */
+body {
+  counter-reset: page-num; /* Memulai counter */
+
+  background-image: radial-gradient(#CBD5E1 2px, transparent 2px);
+  background-size: 32px 32px;
+}
+
+.page {
+  counter-increment: page-num; /* Menambah +1 setiap ada class .page */
+}
+
+/* Bagian Kanan Footer (Nomor Halaman) */
+.page::after {
+  content: "Halaman " counter(page-num);
+  display: block;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  text-align: right;
+  border-top: 2px dashed var(--paper-line);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+/* Bagian Kiri Footer (Judul Buku) */
+.page::before {
+  content: "📖 Bouncing Ball Catch (Pygame)";
+  position: absolute;
+  bottom: 2rem; 
+  left: 4.5rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .page::before { display: none; } /* Sembunyikan judul buku di kiri agar tidak tabrakan */
+  .page::after {
+    content: "📖 Bouncing Ball Catch \A Halaman " counter(page-num);
+    white-space: pre-wrap; /* Mengizinkan garis baru */
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 3rem; /* Beri jarak ekstra dari teks terakhir */
+  }
+}
+
+
+/* Auto Dark Mode jika perangkat siswa menggunakan tema gelap */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0F172A; /* Latar luar sangat gelap */
+    --paper: #1E293B; /* Kertas berubah menjadi Slate gelap */
+    --paper-line: #334155;
+    --ink: #E2E8F0;
+    --heading: #F8FAFC; /* Teks putih keabu-abuan agar tidak silau */
+    --ink-faint: #94A3B8;
+    --callout-bg: rgba(245, 158, 11, 0.15); /* Orange transparan yang elegan */
+    --callout-border: #F59E0B;
+  }
+  body {
+    background-color: var(--bg-color) !important;
+    background-image: radial-gradient(#1E293B 2px, transparent 2px) !important;
+  }
+  
+  .page {
+    border: 2px solid #334155;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  .page-divider span {
+    background: #334155 !important;
+  }
+  .code-block {
+    border: 2px solid #0F172A;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    background: #000000 !important; /* Buat layar kodenya benar-benar hitam pekat agar menonjol dari kertas abu-abu */
+  }
+  .code-chrome {
+    background: #111111 !important;
+    border-bottom: 1px solid #222 !important;
+  }
+
+}
+
+</style>
+</head>
+<body>
+<div class="layout-wrapper">
+  <!-- Sidebar Navigasi -->
+  <aside class="sidebar" style="overflow-y: auto; max-height: calc(100vh - 5rem);">
+    <h4>Daftar Isi Cepat</h4>
+    
+    <div class="sidebar-section">🚀 Bab 1: Fondasi</div>
+    <a href="#sub-1-1">1.1 Jendela Utama</a>
+    <a href="#sub-1-2">1.2 Mengecat & FPS</a>
+    <a href="#sub-1-3">1.3 Sang Pahlawan</a>
+    <a href="#sub-1-4">1.4 Input Keyboard</a>
+    
+    <div class="sidebar-section">🎾 Bab 2: Mekanik</div>
+    <a href="#sub-2-1">2.1 Spawning Bola</a>
+    <a href="#sub-2-2">2.2 Fisika Pantulan</a>
+    <a href="#sub-2-3">2.3 Deteksi Tabrakan</a>
+    
+    <div class="sidebar-section">🎮 Bab 3: Selesai</div>
+    <a href="#sub-3-1">3.1 Sistem Skor</a>
+    <a href="#sub-3-2">3.2 Game Over</a>
+    <a href="#sub-3-3">3.3 Mulai Ulang</a>
+  </aside>
+
+  <div class="book">
+
+  <article class="page cover-page">
+    <h1 class="book-title">3 Jam Jadi Game Developer</h1>
+    <div style="text-align: center; margin: 2.5rem 0;">
+      <div style="width: 100%; max-width: 600px; height: 350px; background: #0F172A; border-radius: 12px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--callout-bg); border: 2px solid #FFFFFF; box-shadow: 0 12px 30px rgba(59, 130, 246, 0.08), 0 4px 6px rgba(0, 0, 0, 0.02); border: 2px solid var(--code-bg); overflow: hidden; position: relative;">
+          <div style="position: absolute; top: 15px; left: 15px; font-family: 'Arial', sans-serif; font-size: 1.2rem; font-weight: bold; color: white;">Skor: 120</div>
+          <div style="width: 25px; height: 25px; background: #E63232; border-radius: 50%; margin-bottom: 80px;"></div>
+          <div style="position: absolute; bottom: 20px; width: 120px; height: 20px; background: #28C850; border-radius: 4px;"></div>
+      </div>
+    </div>
+    <hr>
+    <h3>Project-Based Learning Pygame untuk Pemula</h3>
+<blockquote class="callout callout-note">
+<p><strong>Untuk siapa buku ini?</strong><br>
+Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em>coding</em>. Kita akan menggunakan metode <strong>Project-Based Learning</strong>. Alih-alih cuma baca teori, kamu akan belajar sambil mengetik kode dan langsung melihat hasilnya. Dalam 3 jam, kamu akan punya game yang bisa dimainkan!</p>
+</blockquote>
+    </article>
+
+  <div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <article class="page toc-page">
+    <h2>Daftar Isi</h2>
+<ul>
+<li><strong>Bab 1</strong> — Fondasi & Pergerakan Pemain
+  <ul>
+    <li>1.1 Membuka Jendela Dunia (Game Window)</li>
+    <li>1.2 Mengecat Layar & Frame Rate</li>
+    <li>1.3 Memunculkan Sang Pahlawan (Paddle)</li>
+    <li>1.4 Bergerak Sesuai Perintah (Input Keyboard)</li>
+  </ul>
+</li>
+<li><strong>Bab 2</strong> — Memunculkan Bola & Deteksi Tabrakan
+  <ul>
+    <li>2.1 Menjatuhkan Bola Merah (Spawning)</li>
+    <li>2.2 Fisika Sederhana: Memantul di Dinding</li>
+    <li>2.3 "Hap! Tangkap Bolanya" (Collision)</li>
+  </ul>
+</li>
+<li><strong>Bab 3</strong> — Teks Skor, Game Over & Polishing
+  <ul>
+    <li>3.1 Menghitung Skor (Sistem Hadiah)</li>
+    <li>3.2 Kekalahan (Kondisi Game Over)</li>
+    <li>3.3 Layar Game Over & Mulai Ulang</li>
+    
+  </ul>
+</li>
+</ul>
+<hr/>
+    </article>
+
+  <div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <article class="page chapter-page" id="jam-1"><header class="chapter-head"><div class="chapter-num">Bab 1</div><h1 class="chapter-title">Fondasi & Pergerakan Pemain</h1></header><div class="chapter-body">
+<p>Di bab pertama ini, misi kita adalah membuat layar game bisa terbuka, tidak langsung menutup sendiri, dan membuat karakter utama kita (Si Papan Hijau) bisa bergerak ke kanan dan kiri.</p>
+
+<h2 id="sub-1-1">1.1 Membuka Jendela Dunia (Game Window)</h2>
+<p>Setiap game butuh sebuah layar. Mari kita buat layar pertama kita menggunakan Pygame! Coba ketik kode berikut di file <code>main.py</code> kamu:</p>
+<div class="file-badge"><span class="file-badge-icon">File:</span><code>main.py</code></div><div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># 1. Inisialisasi Pygame</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="c1"># 2. Pengaturan Layar (Screen)</span>
+<span class="n">SCREEN_WIDTH</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">SCREEN_HEIGHT</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="n">SCREEN_WIDTH</span><span class="p">,</span> <span class="n">SCREEN_HEIGHT</span><span class="p">))</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s2">"Bouncing Ball Catch"</span><span class="p">)</span>
+
+<span class="c1"># GAME LOOP</span>
+<span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">while</span> <span class="n">running</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
+            <span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>
+            
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+
+<span class="c1"># Membersihkan program</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</code></pre></div>
+
+</div></article>
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+<article class="page chapter-page"><div class="chapter-body">
+<h3>Penjelasan Kode Secara Detail:</h3>
+<ul>
+  <li><code>import pygame</code> dan <code>import sys</code>: Kita sedang memanggil "alat-alat" (library) yang sudah disiapkan oleh Python. <code>pygame</code> adalah mesin utama untuk membuat game, sedangkan <code>sys</code> dipakai nanti untuk menutup program ke sistem operasi.</li>
+  <li><code>pygame.init()</code>: Wajib dipanggil! Ini ibarat "menyalakan mesin mobil" sebelum kita injak gas. Fungsi ini mempersiapkan semua hal dasar yang dibutuhkan pygame.</li>
+  <li><code>SCREEN_WIDTH</code> dan <code>SCREEN_HEIGHT</code>: Variabel penyimpan angka ukuran layar. Di sini kita pakai 600 untuk lebar, dan 500 untuk tinggi.</li>
+  <li><code>pygame.display.set_mode(...)</code>: Perintah yang langsung mencetak / membuka sebuah jendela (window) di komputermu dengan ukuran yang sudah kita tentukan.</li>
+  <li><code>pygame.display.set_caption(...)</code>: Untuk mengubah teks judul yang ada di bagian atas (title bar) jendela program.</li>
+</ul>
+
+<blockquote class="callout callout-note">
+<p><strong>Kenapa butuh Game Loop (while running)?</strong> <br>
+Game Loop ibarat kamera film yang merekam sekian <em>frame</em> per detik. Kalau kamu hapus bagian <code>while running:</code> ke bawah, jendela game akan langsung tertutup dalam sekejap mata karena program menganggap tugasnya sudah selesai.</p>
+</blockquote>
+
+<ul>
+  <li><code>pygame.event.get()</code>: Di dalam loop, ini berfungsi mengecek semua tindakan pengguna (menekan keyboard, mengklik mouse). Jika penguna menekan tombol "X" di pojok kanan atas, eventnya bernama <code>pygame.QUIT</code>, lalu loop dihentikan (<code>running = False</code>).</li>
+  <li><code>pygame.display.flip()</code>: Sangat penting! Perintah ini me-<em>refresh</em> atau memperbarui apa pun yang kita gambar ke layar secara terus-menerus.</li>
+  <li><code>pygame.quit()</code> &amp; <code>sys.exit()</code>: Setelah keluar dari Game Loop, kita harus "mematikan mesin" pygame dengan benar agar jendela bisa tertutup dengan aman dan tidak membuat laptopmu <em>hang</em>.</li>
+</ul>
+
+<hr/>
+</div></article>
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+<article class="page chapter-page"><div class="chapter-body">
+<h2 id="sub-1-2">1.2 Mengecat Layar & Frame Rate</h2>
+<p>Sekarang kita punya layar, tapi warnanya masih hitam kelam. Mari kita beri warna Biru Gelap dan atur kecepatan game agar tidak terlalu ngebut.</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># Pengatur Kecepatan Frame (FPS) ditambahkan di atas loop</span>
+<span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span>
+
+<span class="c1"># Pengaturan Warna (RGB)</span>
+<span class="n">COLOR_DARK_BLUE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># (DI DALAM GAME LOOP, sebelum display.flip)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">COLOR_DARK_BLUE</span><span class="p">)</span>
+
+<span class="c1"># (DI AKHIR GAME LOOP)</span>
+<span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>Penjelasan Detail:</h3>
+<ul>
+  <li><code>pygame.time.Clock()</code>: Ini adalah "jam tangan" untuk pygame. Kita memerlukannya untuk membatasi kecepatan game.</li>
+  <li><code>COLOR_DARK_BLUE = (30, 40, 60)</code>: Dalam game, warna dibuat dari campuran 3 angka: Merah (R), Hijau (G), dan Biru (B). Kombinasi 30, 40, 60 akan menghasilkan warna biru yang elegan.</li>
+  <li><code>screen.fill(COLOR_DARK_BLUE)</code>: Setiap 1 frame (sepersekian detik), kita harus "menghapus" layar dengan menimpanya menggunakan warna *background*. Jika tidak, gambar lama akan membekas dan terlihat berbayang!</li>
+  <li><code>clock.tick(60)</code>: Memaksa komputer agar tidak menjalankan Game Loop ini lebih dari 60 putaran per detik (60 FPS). Tanpa ini, komputer yang cepat akan menjalankan game sangat ngebut, dan komputer lambat akan menjalankannya sangat lambat.</li>
+</ul>
+
+</div></article>
+
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+<article class="page chapter-page"><div class="chapter-body">
+<h2 id="sub-1-3">1.3 Memunculkan Sang Pahlawan (Paddle)</h2>
+<p>Kita akan membuat papan (paddle) berwarna hijau di bagian bawah layar. Di game ini, koordinat X (kanan-kiri) dan Y (atas-bawah) penting. Ingat, (0,0) ada di ujung kiri atas!</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="n">COLOR_GREEN</span> <span class="o">=</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="n">player_width</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">player_height</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">player_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">SCREEN_WIDTH</span> <span class="o">-</span> <span class="n">player_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="n">player_y</span> <span class="o">=</span> <span class="n">SCREEN_HEIGHT</span> <span class="o">-</span> <span class="n">player_height</span> <span class="o">-</span> <span class="mi">10</span>
+<span class="n">player_speed</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># (DI DALAM GAME LOOP, setelah screen.fill)</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="n">COLOR_GREEN</span><span class="p">,</span> <span class="p">(</span><span class="n">player_x</span><span class="p">,</span> <span class="n">player_y</span><span class="p">,</span> <span class="n">player_width</span><span class="p">,</span> <span class="n">player_height</span><span class="p">))</span>
+</code></pre></div>
+
+<h3>Penjelasan Detail:</h3>
+<ul>
+  <li><code>player_width</code> dan <code>player_height</code>: Menentukan ukuran kotak papan dalam satuan pixel (100 px lebar, 20 px tinggi).</li>
+  <li><code>player_x = (SCREEN_WIDTH - player_width) // 2</code>: Rumus ini digunakan agar pemain otomatis berada **tepat di tengah** layar secara horizontal (sumbu X).</li>
+  <li><code>player_y = SCREEN_HEIGHT - player_height - 10</code>: Ini menaruh pemain 10 pixel dari dasar layar (Sumbu Y makin besar ke arah bawah).</li>
+  <li><code>pygame.draw.rect(...)</code>: Fungsi sakti dari pygame untuk menggambar kotak persegi (Rectangle). Parameter akhirnya adalah <code>(x, y, lebar, tinggi)</code>.</li>
+</ul>
+
+<hr/>
+</div></article>
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+<article class="page chapter-page"><div class="chapter-body">
+<h2 id="sub-1-4">1.4 Bergerak Sesuai Perintah (Input Keyboard)</h2>
+<p>Pahlawan kita masih diam. Ayo buat dia bergerak dengan tombol panah Kiri dan Kanan!</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># (DI DALAM GAME LOOP)</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+
+<span class="c1"># Gerak kiri dan cegah tembus layar kiri</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]</span> <span class="ow">or</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_a</span><span class="p">])</span> <span class="ow">and</span> <span class="n">player_x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">player_x</span> <span class="o">-=</span> <span class="n">player_speed</span>
+    
+<span class="c1"># Gerak kanan dan cegah tembus layar kanan</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_RIGHT</span><span class="p">]</span> <span class="ow">or</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_d</span><span class="p">])</span> <span class="ow">and</span> <span class="n">player_x</span> <span class="o">&lt;</span> <span class="n">SCREEN_WIDTH</span> <span class="o">-</span> <span class="n">player_width</span><span class="p">:</span>
+    <span class="n">player_x</span> <span class="o">+=</span> <span class="n">player_speed</span>
+</code></pre></div>
+
+<h3>Penjelasan Detail:</h3>
+<ul>
+  <li><code>pygame.key.get_pressed()</code>: Akan mengambil daftar dari SELURUH tombol keyboard saat itu, apakah sedang ditekan (True) atau tidak (False).</li>
+  <li><code>keys[pygame.K_LEFT]</code>: Mengecek apakah tombol panah kiri sedang ditahan. Kita juga tambahkan <code>or keys[pygame.K_a]</code> agar pemain yang suka pakai WASD bisa main.</li>
+  <li><code>player_x -= player_speed</code>: Ingat koordinat komputer? Makin ke kiri, nilai X makin kecil. Jadi kita menguranginya dengan variabel <code>player_speed</code> (yang nilainya 8).</li>
+  <li><code>player_x &gt; 0</code>: Ini syarat logika *collision* sederhana. Pemain hanya boleh gerak ke kiri JIKA posisi X-nya masih lebih besar dari 0 (batas ujung kiri). Ini yang membuat kotakmu tidak bisa menembus dinding keluar layar! Sama halnya dengan batas kanan <code>SCREEN_WIDTH - player_width</code>.</li>
+</ul>
+<p><em>Hore! Bab pertama selesai dan kamu sudah punya karakter yang bisa digerakkan!</em></p>
+</div>
+    </article>
+
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+<article class="page chapter-page" id="jam-2"><header class="chapter-head"><div class="chapter-num">Bab 2</div><h1 class="chapter-title">Memunculkan Bola & Deteksi Tabrakan</h1></header><div class="chapter-body">
+<p>Di bab ini kita akan membuat musuh utama: Bola Merah yang memantul liar.</p>
+
+<h2 id="sub-2-1">2.1 Menjatuhkan Bola Merah (Spawning)</h2>
+<p>Sama seperti saat membuat Paddle, kita juga harus menyiapkan posisi awal dan ukuran bola.</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">COLOR_RED</span> <span class="o">=</span> <span class="p">(</span><span class="mi">230</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">ball_size</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">ball_x</span> <span class="o">=</span> <span class="n">SCREEN_WIDTH</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="n">ball_y</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Kecepatan X (bisa ke kiri -4 atau kanan 4) dan Y (jatuh ke bawah)</span>
+<span class="n">ball_speed_x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ball_speed_y</span> <span class="o">=</span> <span class="mi">4</span>
+</code></pre></div>
+<h3>Penjelasan Detail:</h3>
+<ul>
+  <li><code>import random</code>: Karena kita mau gamenya nggak bisa ditebak, kita butuh alat pengacak (random).</li>
+  <li><code>random.choice([-1, 1])</code>: Memilih acak antara angka -1 atau 1. Kalau terpilih -1, bola akan mulai bergerak ke kiri (karena 4 * -1 = -4). Kalau 1, dia bergerak ke kanan. Ini membuat arah awal jatuhnya bola berbeda tiap kali kita main!</li>
+  <li>Jangan lupa untuk menggambar bolanya di dalam <code>while running:</code> menggunakan <code>pygame.draw.ellipse(screen, COLOR_RED, (ball_x, ball_y, ball_size, ball_size))</code>. Fungsi <code>ellipse</code> (elips) bisa dipakai membuat bulat sempurna jika lebar dan tingginya sama.</li>
+</ul>
+
+
+</div></article>
+
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+<article class="page chapter-page"><div class="chapter-body">
+<h2 id="sub-2-2">2.2 Fisika Sederhana: Memantul di Dinding</h2>
+<p>Agar bola tidak tembus tembok, kita ubah kecepatan bolanya jadi kebalikannya saat menyentuh dinding (dikali -1).</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># (DI DALAM GAME LOOP)</span>
+<span class="c1"># Bergerak!</span>
+<span class="n">ball_x</span> <span class="o">+=</span> <span class="n">ball_speed_x</span>
+<span class="n">ball_y</span> <span class="o">+=</span> <span class="n">ball_speed_y</span>
+
+<span class="c1"># Pantul ke Kiri / Kanan</span>
+<span class="k">if</span> <span class="n">ball_x</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ball_x</span> <span class="o">+</span> <span class="n">ball_size</span> <span class="o">&gt;=</span> <span class="n">SCREEN_WIDTH</span><span class="p">:</span>
+    <span class="n">ball_speed_x</span> <span class="o">=</span> <span class="o">-</span><span class="n">ball_speed_x</span>
+
+<span class="c1"># Pantul ke Atas</span>
+<span class="k">if</span> <span class="n">ball_y</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">ball_speed_y</span> <span class="o">=</span> <span class="o">-</span><span class="n">ball_speed_y</span>
+</code></pre></div>
+<h3>Penjelasan Detail:</h3>
+<ul>
+  <li>Tiap *frame*, posisi X dan Y bola selalu bertambah. Jika <code>ball_speed_y</code> bernilai 4, bola terus turun 4 pixel per *frame*.</li>
+  <li><strong>Konsep Pantulan:</strong> Kalau nilai <code>ball_x</code> kurang dari 0 (nabrak dinding kiri), kita ubah <code>ball_speed_x = -ball_speed_x</code>. Kalau asalnya dia punya kecepatan -4 (kiri), sekarang jadi --4 (alias +4, balik gerak ke kanan). Sederhana tapi keren kan?</li>
+  <li>Kita TIDAK memantulkan bola di dinding bawah. Karena kalau bola menyentuh bagian bawah layar, itu artinya bola terlewat oleh pemain dan... GAME OVER! (Akan dibahas di jam ke 3).</li>
+</ul>
+
+<hr/>
+</div></article>
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+<article class="page chapter-page"><div class="chapter-body">
+<h2 id="sub-2-3">2.3 Deteksi Tabrakan (Collision)</h2>
+<p>Sekarang yang paling penting: membuat Paddle kita bisa "memukul" bola kembali ke atas. Kita menggunakan fungsi super dari pygame yaitu <code>colliderect</code>.</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># (DI DALAM GAME LOOP)</span>
+<span class="n">player_rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">player_x</span><span class="p">,</span> <span class="n">player_y</span><span class="p">,</span> <span class="n">player_width</span><span class="p">,</span> <span class="n">player_height</span><span class="p">)</span>
+<span class="n">ball_rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">ball_x</span><span class="p">,</span> <span class="n">ball_y</span><span class="p">,</span> <span class="n">ball_size</span><span class="p">,</span> <span class="n">ball_size</span><span class="p">)</span>
+
+<span class="c1"># Jika bertabrakan...</span>
+<span class="k">if</span> <span class="n">player_rect</span><span class="o">.</span><span class="n">colliderect</span><span class="p">(</span><span class="n">ball_rect</span><span class="p">):</span>
+    <span class="c1"># Pantulkan bola ke atas (wajib negatif)</span>
+    <span class="n">ball_speed_y</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">ball_speed_y</span><span class="p">)</span>
+</code></pre></div>
+<h3>Penjelasan Detail:</h3>
+<ul>
+  <li><code>pygame.Rect()</code>: Adalah sebuah kotak (*rectangle*) "ghaib" (tak terlihat). Untuk mengecek tabrakan dengan mudah, kita membungkus posisi Pemain dan Bola ke dalam objek Rect ini setiap *frame*.</li>
+  <li><code>player_rect.colliderect(ball_rect)</code>: Inilah sihir utamanya! Daripada kita membuat rumus matematika rumit untuk menghitung apakah sudut kotak pemain berpapasan dengan sudut bola, fungsi bawaan pygame ini langsung menghasilkan <code>True</code> jika kedua kotak saling bersentuhan.</li>
+  <li><code>-abs(ball_speed_y)</code>: <code>abs</code> mengembalikan angka absolut (selalu positif). Jika kita beri tanda negatif di depannya, nilainya dijamin <strong>selalu negatif</strong>. Kenapa? Biar setelah mengenai papan, bola DIJAMIN bergerak memantul ke atas (-Y). Kalau kita cuma pakai <code>* -1</code>, kadang ada bug di mana bola memantul berkali-kali di dalam papan (karena terjebak) sebelum bisa keluar!</li>
+</ul>
+
+</div>
+    </article>
+
+
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+<article class="page chapter-page" id="bab-3"><header class="chapter-head"><div class="chapter-num">Bab 3</div><h1 class="chapter-title">Teks Skor, Game Over & Polishing</h1></header><div class="chapter-body">
+<p>Game ini belum seru kalau tidak ada sistem skor dan menang kalah. Mari kita lengkapi gamenya!</p>
+
+<h2 id="sub-3-1">3.1 Menghitung Skor (Sistem Hadiah)</h2>
+<p>Kita butuh sebuah variabel penyimpan skor, dan sebuah font (huruf) untuk menampilkannya ke layar.</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># (Taruh di atas bersama warna)</span>
+<span class="n">font_score</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s2">"Arial"</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># (DI DALAM GAME LOOP - Bagian Tabrakan)</span>
+<span class="k">if</span> <span class="n">player_rect</span><span class="o">.</span><span class="n">colliderect</span><span class="p">(</span><span class="n">ball_rect</span><span class="p">):</span>
+    <span class="n">ball_speed_y</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">ball_speed_y</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">+=</span> <span class="mi">10</span> <span class="c1"># Tambah 10 poin!</span>
+
+    <span class="c1"># Tambah ngebut sedikit biar makin seru</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ball_speed_y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">ball_speed_y</span> <span class="o">*=</span> <span class="mf">1.05</span>
+        <span class="n">ball_speed_x</span> <span class="o">*=</span> <span class="mf">1.05</span>
+</code></pre></div>
+<h3>Penjelasan Detail:</h3>
+<ul>
+  <li><code>pygame.font.SysFont</code>: Memuat font "Arial" berukuran 28 yang sudah bawaan ada di sistem komputermu.</li>
+  <li><code>score += 10</code>: Setiap kali terjadi <code>colliderect</code> (bola mengenai papan), nilai <code>score</code> ditambah 10.</li>
+  <li><code>*= 1.05</code>: Setiap pantulan, kecepatan X dan Y bola dikalikan 1.05 (alias bertambah 5%). Ini membuat game makin lama makin sulit!</li>
+</ul>
+</div></article>
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+<article class="page chapter-page"><div class="chapter-body">
+<p>Lalu untuk menampilkannya ke layar, tambahkan di bagian bawah setelah kamu menggambar bola:</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># Tampilkan Skor</span>
+<span class="n">score_text</span> <span class="o">=</span> <span class="n">font_score</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Skor: </span><span class="si">{</span><span class="n">score</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">COLOR_WHITE</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">score_text</span><span class="p">,</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+</code></pre></div>
+<ul>
+  <li><code>render(...)</code>: Mengubah teks biasa menjadi sebuah <em>gambar</em> (surface) agar bisa ditempel di layar.</li>
+  <li><code>screen.blit(...)</code>: Ini adalah fungsi pygame untuk menempelkan gambar (atau teks yang sudah dirender tadi) ke layar. Kita tempel di koordinat X: 15, Y: 15 (Pojok Kiri Atas).</li>
+</ul>
+</div></article>
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+<article class="page chapter-page"><div class="chapter-body">
+<h2 id="sub-3-2">3.2 Kekalahan (Kondisi Game Over)</h2>
+<p>Kalau bola jatuh melebihi batas bawah layar, game harusnya berakhir.</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># (Taruh di atas sebelum Game Loop)</span>
+<span class="n">game_over</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># (DI DALAM GAME LOOP)</span>
+<span class="k">if</span> <span class="n">ball_y</span> <span class="o">&gt;</span> <span class="n">SCREEN_HEIGHT</span><span class="p">:</span>
+    <span class="n">game_over</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>Agar pemain dan bola berhenti bergerak saat Game Over, kita harus membungkus <strong>semua kode pergerakan</strong> di dalam <code>if not game_over:</code>. Jadi kalau <code>game_over</code> bernilai True, gerakan bola berhenti seketika.</p>
+
+</div></article>
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+<article class="page chapter-page"><div class="chapter-body">
+<h2 id="sub-3-3">3.3 Layar Game Over & Mulai Ulang</h2>
+<p>Saat kalah, kita munculkan teks besar di tengah layar dan meminta pemain menekan tombol SPACE untuk main lagi.</p>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="n">font_gameover</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s2">"Arial"</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># (DI BAGIAN GAMBAR LAYAR / RENDER)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">game_over</span><span class="p">:</span>
+    <span class="c1"># (Kode gambar pemain &amp; bola yang tadi)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">go_text</span> <span class="o">=</span> <span class="n">font_gameover</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">"GAME OVER!"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">COLOR_RED</span><span class="p">)</span>
+    <span class="n">restart_text</span> <span class="o">=</span> <span class="n">font_score</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">"Tekan SPACE untuk Main Lagi"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">COLOR_WHITE</span><span class="p">)</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">go_text</span><span class="p">,</span> <span class="p">(</span><span class="n">SCREEN_WIDTH</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">go_text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">restart_text</span><span class="p">,</span> <span class="p">(</span><span class="n">SCREEN_WIDTH</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">restart_text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+</code></pre></div>
+<h3>Penjelasan Detail:</h3>
+<ul>
+  <li><code>get_width()</code>: Ini adalah trik pemrograman yang sangat cerdas! Fungsi ini menghitung panjang piksel dari sebuah teks sehingga kita bisa otomatis menaruh teks tersebut persis di tengah layar (Lebar Layar / 2 dikurangi Setengah Lebar Teks).</li>
+</ul>
+</div></article>
+<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+<article class="page chapter-page"><div class="chapter-body">
+
+<blockquote class="callout callout-note">
+<p><strong>Selamat! 🎉</strong><br>Game Bouncing Ball Catch pertama kamu sudah selesai. Dari sini kamu bisa bebas bereksperimen: coba ganti warna latar belakangnya, bentuk bola menjadi kotak, atau tambahkan lagu latar (backsound) sendiri!</p>
+</blockquote>
+</div></article>
+
+
+
+</div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
+      // Kita pakai reverse loop atau cari yang intersecting
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          // Hapus semua status aktif
+          document.querySelectorAll('.sidebar a').forEach(link => {
+            link.classList.remove('active');
+          });
+          // Tambahkan status aktif pada navigasi yang sesuai
+          const activeLink = document.querySelector(`.sidebar a[href="#${id}"]`);
+          if (activeLink) {
+            activeLink.classList.add('active');
+          }
+        }
+      });
+    }, { rootMargin: "-10% 0px -70% 0px" }); // Trigger saat judul ada di sekitar bagian atas layar
+
+    // Amati semua sub-bab yang memiliki ID
+    document.querySelectorAll('h2[id^="sub-"]').forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>
+
+</body>
+</html>
