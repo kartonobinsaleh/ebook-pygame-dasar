@@ -889,94 +889,96 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
 <p>Di bab ini kita akan membuat musuh utama: Bola Merah yang memantul liar.</p>
 
 <h2 id="sub-2-1">2.1 Menjatuhkan Bola Merah (Spawning)</h2>
-<p>Sama seperti saat membuat Paddle, kita juga harus menyiapkan posisi awal dan ukuran bola.</p>
-<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+<p>Sama seperti saat membuat Pahlawan (Paddle), kita juga harus menyiapkan mesin pengacak, posisi awal, ukuran, dan menggambar bolanya di layar.</p>
+<p>Ketikkan kode yang di-<em>highlight</em> (ditandai biru) ke dalam file <code>main.py</code> kamu:</p>
 
-<span class="n">COLOR_RED</span> <span class="o">=</span> <span class="p">(</span><span class="mi">230</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">ball_size</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">ball_x</span> <span class="o">=</span> <span class="n">SCREEN_WIDTH</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">ball_y</span> <span class="o">=</span> <span class="mi">100</span>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="kn">import</span> <span class="nn">pygame</span>
+<span class="highlight-line"><span class="kn">import</span> <span class="nn">random</span></span>
 
-<span class="c1"># Kecepatan X (bisa ke kiri -4 atau kanan 4) dan Y (jatuh ke bawah)</span>
-<span class="n">ball_speed_x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">ball_speed_y</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="c1"># ... (kode inisialisasi & warna lain) ...</span>
+
+<span class="highlight-line"><span class="n">COLOR_RED</span> <span class="o">=</span> <span class="p">(</span><span class="mi">230</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span></span>
+<span class="highlight-line"><span class="n">ball_size</span> <span class="o">=</span> <span class="mi">20</span></span>
+<span class="highlight-line"><span class="n">ball_x</span> <span class="o">=</span> <span class="n">SCREEN_WIDTH</span> <span class="o">//</span> <span class="mi">2</span></span>
+<span class="highlight-line"><span class="n">ball_y</span> <span class="o">=</span> <span class="mi">100</span></span>
+<span class="highlight-line"><span class="n">ball_speed_x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></span>
+<span class="highlight-line"><span class="n">ball_speed_y</span> <span class="o">=</span> <span class="mi">4</span></span>
+
+<span class="c1"># ... (kode posisi player) ...</span>
+
+<span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">while</span> <span class="n">running</span><span class="p">:</span>
+    <span class="c1"># ... (kode event & gerak keyboard) ...</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">COLOR_DARK_BLUE</span><span class="p">)</span>
+    
+<span class="highlight-line">    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="n">COLOR_RED</span><span class="p">,</span> <span class="p">(</span><span class="n">ball_x</span><span class="p">,</span> <span class="n">ball_y</span><span class="p">,</span> <span class="n">ball_size</span><span class="p">,</span> <span class="n">ball_size</span><span class="p">))</span></span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="n">COLOR_GREEN</span><span class="p">,</span> <span class="p">(</span><span class="n">player_x</span><span class="p">,</span> <span class="n">player_y</span><span class="p">,</span> <span class="n">player_width</span><span class="p">,</span> <span class="n">player_height</span><span class="p">))</span>
+    
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+    <span class="c1"># ...</span>
 </code></pre></div>
-<h3>Penjelasan Detail:</h3>
-<ul>
-  <li><code>import random</code>: Karena kita mau gamenya nggak bisa ditebak, kita butuh alat pengacak (random).</li>
-  <li><code>random.choice([-1, 1])</code>: Memilih acak antara angka -1 atau 1. Kalau terpilih -1, bola akan mulai bergerak ke kiri (karena 4 * -1 = -4). Kalau 1, dia bergerak ke kanan. Ini membuat arah awal jatuhnya bola berbeda tiap kali kita main!</li>
-  <li>Jangan lupa untuk menggambar bolanya di dalam <code>while running:</code> menggunakan <code>pygame.draw.ellipse(screen, COLOR_RED, (ball_x, ball_y, ball_size, ball_size))</code>. Fungsi <code>ellipse</code> (elips) bisa dipakai membuat bulat sempurna jika lebar dan tingginya sama.</li>
+<ul style="margin-top: 1rem; font-size: 0.95rem;">
+  <li><code>import random</code>: Memanggil alat pengacak dari Python.</li>
+  <li><code>random.choice([-1, 1])</code>: Memilih acak arah awal bola (-1 berarti ke kiri, 1 berarti ke kanan) agar permainan selalu berbeda tiap dimainkan.</li>
+  <li><code>pygame.draw.ellipse(...)</code>: Fungsi untuk menggambar lingkaran/elips di layar.</li>
 </ul>
-
 
 </div></article>
 
 <div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
 
 <article class="page chapter-page"><div class="chapter-body">
-<h2 id="sub-2-2">2.2 Fisika Sederhana: Memantul di Dinding</h2>
-<p>Agar bola tidak tembus tembok, kita ubah kecepatan bolanya jadi kebalikannya saat menyentuh dinding (dikali -1).</p>
-<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># (DI DALAM GAME LOOP)</span>
-<span class="c1"># Bergerak!</span>
-<span class="n">ball_x</span> <span class="o">+=</span> <span class="n">ball_speed_x</span>
-<span class="n">ball_y</span> <span class="o">+=</span> <span class="n">ball_speed_y</span>
+<h2 id="sub-2-2">2.2 Fisika Sederhana: Bergerak & Memantul di Dinding</h2>
+<p>Bola kita sudah tampil, tapi masih diam. Ayo buat bola tersebut jatuh ke bawah dan memantul tiap kali membentur tembok kiri, kanan, atau atap!</p>
 
-<span class="c1"># Pantul ke Kiri / Kanan</span>
-<span class="k">if</span> <span class="n">ball_x</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ball_x</span> <span class="o">+</span> <span class="n">ball_size</span> <span class="o">&gt;=</span> <span class="n">SCREEN_WIDTH</span><span class="p">:</span>
-    <span class="n">ball_speed_x</span> <span class="o">=</span> <span class="o">-</span><span class="n">ball_speed_x</span>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="k">while</span> <span class="n">running</span><span class="p">:</span>
+    <span class="c1"># ... (kode event & gerak keyboard) ...</span>
 
-<span class="c1"># Pantul ke Atas</span>
-<span class="k">if</span> <span class="n">ball_y</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">ball_speed_y</span> <span class="o">=</span> <span class="o">-</span><span class="n">ball_speed_y</span>
+<span class="highlight-line">    <span class="n">ball_x</span> <span class="o">+=</span> <span class="n">ball_speed_x</span></span>
+<span class="highlight-line">    <span class="n">ball_y</span> <span class="o">+=</span> <span class="n">ball_speed_y</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="k">if</span> <span class="n">ball_x</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ball_x</span> <span class="o">+</span> <span class="n">ball_size</span> <span class="o">&gt;=</span> <span class="n">SCREEN_WIDTH</span><span class="p">:</span></span>
+<span class="highlight-line">        <span class="n">ball_speed_x</span> <span class="o">=</span> <span class="o">-</span><span class="n">ball_speed_x</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="k">if</span> <span class="n">ball_y</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span></span>
+<span class="highlight-line">        <span class="n">ball_speed_y</span> <span class="o">=</span> <span class="o">-</span><span class="n">ball_speed_y</span></span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">COLOR_DARK_BLUE</span><span class="p">)</span>
+    <span class="c1"># ...</span>
 </code></pre></div>
-<h3>Penjelasan Detail:</h3>
-<ul>
-  <li>Tiap *frame*, posisi X dan Y bola selalu bertambah. Jika <code>ball_speed_y</code> bernilai 4, bola terus turun 4 pixel per *frame*.</li>
-  <li><strong>Konsep Pantulan:</strong> Kalau nilai <code>ball_x</code> kurang dari 0 (nabrak dinding kiri), kita ubah <code>ball_speed_x = -ball_speed_x</code>. Kalau asalnya dia punya kecepatan -4 (kiri), sekarang jadi --4 (alias +4, balik gerak ke kanan). Sederhana tapi keren kan?</li>
-  <li>Kita TIDAK memantulkan bola di dinding bawah. Karena kalau bola menyentuh bagian bawah layar, itu artinya bola terlewat oleh pemain dan... GAME OVER! (Akan dibahas di jam ke 3).</li>
+<ul style="margin-top: 1rem; font-size: 0.95rem;">
+  <li><code>ball_x += ball_speed_x</code>: Membuat bola terus melaju tiap detiknya.</li>
+  <li><code>ball_speed_x = -ball_speed_x</code>: <strong>Konsep Pantulan Fisika!</strong> Jika bola menabrak batas kiri (0) atau kanan layar, ubah kecepatannya menjadi berlawanan arah (dikali -1). Misalnya dari bergerak kiri (-4) menjadi kanan (+4).</li>
+  <li>Catatan: Kita sengaja <strong>TIDAK</strong> memantulkan bola jika menyentuh dinding bawah (lantai). Karena jika jatuh ke lantai, artinya bola luput dari tangkapan pahlawan kita (Game Over!).</li>
 </ul>
-
-<hr/>
-<h3 style="margin-top: 2rem;">Menutup Game Lebih Cepat (Tombol ESC)</h3>
-<p>Kadang, mengklik tombol silang merah itu merepotkan. Bagaimana jika kita ingin menutup game hanya dengan menekan tombol <strong>ESC</strong> di <em>keyboard</em>?</p>
-<p>Tambahkan 2 baris kode ini tepat di bawah <code>if event.type == pygame.QUIT:</code></p>
-<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code>    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
-            <span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>
-        
-        <span class="c1"># (BARU) Jika pemain menekan sembarang tombol keyboard...</span>
-        <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">:</span>
-            <span class="c1"># ...dan tombol itu adalah tombol ESCAPE</span>
-            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">:</span>
-                <span class="n">running</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># Tutup game!</span>
-</code></pre></div>
-<p style="margin-top: 1rem;">Cobalah jalankan lagi, dan kali ini tekan tombol <strong>ESC</strong> di ujung kiri atas <em>keyboard</em>-mu. Selamat! Kamu baru saja belajar cara "Merespons Tombol Keyboard"!</p>
 
 </div></article>
 <div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
 <article class="page chapter-page"><div class="chapter-body">
-<h2 id="sub-2-3">2.3 Deteksi Tabrakan (Collision)</h2>
-<p>Sekarang yang paling penting: membuat Paddle kita bisa "memukul" bola kembali ke atas. Kita menggunakan fungsi super dari pygame yaitu <code>colliderect</code>.</p>
-<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># (DI DALAM GAME LOOP)</span>
-<span class="n">player_rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">player_x</span><span class="p">,</span> <span class="n">player_y</span><span class="p">,</span> <span class="n">player_width</span><span class="p">,</span> <span class="n">player_height</span><span class="p">)</span>
-<span class="n">ball_rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">ball_x</span><span class="p">,</span> <span class="n">ball_y</span><span class="p">,</span> <span class="n">ball_size</span><span class="p">,</span> <span class="n">ball_size</span><span class="p">)</span>
+<h2 id="sub-2-3">2.3 Deteksi Tabrakan (Collision) dengan Pahlawan</h2>
+<p>Sekarang yang paling penting: membuat papan (Paddle) kita bisa "memukul" bola kembali ke atas agar tidak jatuh ke lantai.</p>
 
-<span class="c1"># Jika bertabrakan...</span>
-<span class="k">if</span> <span class="n">player_rect</span><span class="o">.</span><span class="n">colliderect</span><span class="p">(</span><span class="n">ball_rect</span><span class="p">):</span>
-    <span class="c1"># Pantulkan bola ke atas (wajib negatif)</span>
-    <span class="n">ball_speed_y</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">ball_speed_y</span><span class="p">)</span>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="k">while</span> <span class="n">running</span><span class="p">:</span>
+    <span class="c1"># ... (kode pantulan tembok) ...</span>
+
+<span class="highlight-line">    <span class="n">player_rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">player_x</span><span class="p">,</span> <span class="n">player_y</span><span class="p">,</span> <span class="n">player_width</span><span class="p">,</span> <span class="n">player_height</span><span class="p">)</span></span>
+<span class="highlight-line">    <span class="n">ball_rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">ball_x</span><span class="p">,</span> <span class="n">ball_y</span><span class="p">,</span> <span class="n">ball_size</span><span class="p">,</span> <span class="n">ball_size</span><span class="p">)</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="k">if</span> <span class="n">player_rect</span><span class="o">.</span><span class="n">colliderect</span><span class="p">(</span><span class="n">ball_rect</span><span class="p">):</span></span>
+<span class="highlight-line">        <span class="n">ball_speed_y</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">ball_speed_y</span><span class="p">)</span></span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">COLOR_DARK_BLUE</span><span class="p">)</span>
+    <span class="c1"># ...</span>
 </code></pre></div>
-<h3>Penjelasan Detail:</h3>
-<ul>
-  <li><code>pygame.Rect()</code>: Adalah sebuah kotak (*rectangle*) "ghaib" (tak terlihat). Untuk mengecek tabrakan dengan mudah, kita membungkus posisi Pemain dan Bola ke dalam objek Rect ini setiap *frame*.</li>
-  <li><code>player_rect.colliderect(ball_rect)</code>: Inilah sihir utamanya! Daripada kita membuat rumus matematika rumit untuk menghitung apakah sudut kotak pemain berpapasan dengan sudut bola, fungsi bawaan pygame ini langsung menghasilkan <code>True</code> jika kedua kotak saling bersentuhan.</li>
-  <li><code>-abs(ball_speed_y)</code>: <code>abs</code> mengembalikan angka absolut (selalu positif). Jika kita beri tanda negatif di depannya, nilainya dijamin <strong>selalu negatif</strong>. Kenapa? Biar setelah mengenai papan, bola DIJAMIN bergerak memantul ke atas (-Y). Kalau kita cuma pakai <code>* -1</code>, kadang ada bug di mana bola memantul berkali-kali di dalam papan (karena terjebak) sebelum bisa keluar!</li>
+<ul style="margin-top: 1rem; font-size: 0.95rem;">
+  <li><code>pygame.Rect()</code>: Membuat kotak transparan ("ghaib") di sekitar Pahlawan dan Bola. Ini sangat berguna untuk sistem radar tabrakan di Pygame.</li>
+  <li><code>colliderect()</code>: Fungsi ajaib! Langsung bernilai <code>True</code> jika kedua kotak saling bersentuhan. Kita tidak perlu meracik rumus matematika rumit!</li>
+  <li><code>-abs(ball_speed_y)</code>: Memastikan kecepatan bola selalu bernilai <strong>Negatif</strong> (terpantul ke atas layar). Menggunakan <code>abs</code> mencegah <em>bug</em> memantul berkali-kali di dalam papan.</li>
 </ul>
-
+<p style="margin-top: 1rem;"><strong>Coba Jalankan!</strong> Sekarang kamu sudah bisa bermain tangkap-tangkapan bola menggunakan <em>keyboard</em>-mu!</p>
 </div>
     </article>
-
-
 <div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
 
 <article class="page chapter-page" id="bab-3"><header class="chapter-head"><div class="chapter-num">Bab 3</div><h1 class="chapter-title">Teks Skor, Game Over & Polishing</h1></header><div class="chapter-body">
