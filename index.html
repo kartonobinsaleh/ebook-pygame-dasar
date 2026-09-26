@@ -818,42 +818,38 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
 
 <article class="page chapter-page"><div class="chapter-body">
 <h2 id="sub-1-4">1.4 Memunculkan Sang Pahlawan (Paddle)</h2>
-<p>Kita akan membuat papan (paddle) berwarna hijau di bagian bawah layar. Di game ini, koordinat X (kanan-kiri) dan Y (atas-bawah) penting. Ingat, (0,0) ada di ujung kiri atas!</p>
-<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="n">COLOR_GREEN</span> <span class="o">=</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<p>Kita akan membuat papan (paddle) berwarna hijau di bagian bawah layar. Di game ini, koordinat X (kanan-kiri) dan Y (atas-bawah) sangat penting. Ingat, posisi (0,0) ada di ujung kiri atas layar!</p>
+<p>Ketikkan kode yang di-<em>highlight</em> (ditandai biru) berikut ke dalam file <code>main.py</code> kamu:</p>
 
-<span class="n">player_width</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">player_height</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">player_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">SCREEN_WIDTH</span> <span class="o">-</span> <span class="n">player_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">player_y</span> <span class="o">=</span> <span class="n">SCREEN_HEIGHT</span> <span class="o">-</span> <span class="n">player_height</span> <span class="o">-</span> <span class="mi">10</span>
-<span class="n">player_speed</span> <span class="o">=</span> <span class="mi">8</span>
+<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># Pengaturan Warna (Red, Green, Blue)</span>
+<span class="n">COLOR_DARK_BLUE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="highlight-line"><span class="n">COLOR_GREEN</span> <span class="o">=</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span></span>
 
-<span class="c1"># (DI DALAM GAME LOOP, setelah screen.fill)</span>
-<span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="n">COLOR_GREEN</span><span class="p">,</span> <span class="p">(</span><span class="n">player_x</span><span class="p">,</span> <span class="n">player_y</span><span class="p">,</span> <span class="n">player_width</span><span class="p">,</span> <span class="n">player_height</span><span class="p">))</span>
+<span class="highlight-line"><span class="n">player_width</span> <span class="o">=</span> <span class="mi">100</span></span>
+<span class="highlight-line"><span class="n">player_height</span> <span class="o">=</span> <span class="mi">20</span></span>
+<span class="highlight-line"><span class="n">player_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">SCREEN_WIDTH</span> <span class="o">-</span> <span class="n">player_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span></span>
+<span class="highlight-line"><span class="n">player_y</span> <span class="o">=</span> <span class="n">SCREEN_HEIGHT</span> <span class="o">-</span> <span class="n">player_height</span> <span class="o">-</span> <span class="mi">10</span></span>
+<span class="highlight-line"><span class="n">player_speed</span> <span class="o">=</span> <span class="mi">8</span></span>
+
+<span class="c1"># GAME LOOP</span>
+<span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">while</span> <span class="n">running</span><span class="p">:</span>
+    <span class="c1"># ... (kode cek event klik X) ...</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">COLOR_DARK_BLUE</span><span class="p">)</span>
+    
+<span class="highlight-line">    <span class="c1"># Gambar pemain (kotak hijau)</span></span>
+<span class="highlight-line">    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="n">COLOR_GREEN</span><span class="p">,</span> <span class="p">(</span><span class="n">player_x</span><span class="p">,</span> <span class="n">player_y</span><span class="p">,</span> <span class="n">player_width</span><span class="p">,</span> <span class="n">player_height</span><span class="p">))</span></span>
+    
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+    <span class="c1"># ... (kode clock) ...</span>
 </code></pre></div>
-
-<h3>Penjelasan Detail:</h3>
-<ul>
-  <li><code>player_width</code> dan <code>player_height</code>: Menentukan ukuran kotak papan dalam satuan pixel (100 px lebar, 20 px tinggi).</li>
-  <li><code>player_x = (SCREEN_WIDTH - player_width) // 2</code>: Rumus ini digunakan agar pemain otomatis berada **tepat di tengah** layar secara horizontal (sumbu X).</li>
-  <li><code>player_y = SCREEN_HEIGHT - player_height - 10</code>: Ini menaruh pemain 10 pixel dari dasar layar (Sumbu Y makin besar ke arah bawah).</li>
-  <li><code>pygame.draw.rect(...)</code>: Fungsi sakti dari pygame untuk menggambar kotak persegi (Rectangle). Parameter akhirnya adalah <code>(x, y, lebar, tinggi)</code>.</li>
+<ul style="margin-top: 1rem; font-size: 0.95rem;">
+  <li><code>player_x = (SCREEN_WIDTH - player_width) // 2</code>: Rumus pintar agar papan pemain otomatis berada <strong>tepat di tengah</strong> layar secara horizontal.</li>
+  <li><code>player_y = SCREEN_HEIGHT - player_height - 10</code>: Ini menaruh papan pemain 10 pixel mengambang dari dasar layar terbawah (ingat, sumbu Y makin besar ke bawah!).</li>
+  <li><code>pygame.draw.rect(...)</code>: Fungsi sakti Pygame untuk menggambar persegi ke layar. Parameternya adalah <code>(layar, warna, (x, y, lebar, tinggi))</code>.</li>
 </ul>
-
-<hr/>
-<h3 style="margin-top: 2rem;">Menutup Game Lebih Cepat (Tombol ESC)</h3>
-<p>Kadang, mengklik tombol silang merah itu merepotkan. Bagaimana jika kita ingin menutup game hanya dengan menekan tombol <strong>ESC</strong> di <em>keyboard</em>?</p>
-<p>Tambahkan 2 baris kode ini tepat di bawah <code>if event.type == pygame.QUIT:</code></p>
-<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code>    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
-            <span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>
-        
-        <span class="c1"># (BARU) Jika pemain menekan sembarang tombol keyboard...</span>
-        <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">:</span>
-            <span class="c1"># ...dan tombol itu adalah tombol ESCAPE</span>
-            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">:</span>
-                <span class="n">running</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># Tutup game!</span>
-</code></pre></div>
-<p style="margin-top: 1rem;">Cobalah jalankan lagi, dan kali ini tekan tombol <strong>ESC</strong> di ujung kiri atas <em>keyboard</em>-mu. Selamat! Kamu baru saja belajar cara "Merespons Tombol Keyboard"!</p>
+<p style="margin-top: 1rem;"><strong>Coba Jalankan!</strong> Sekarang ada papan hijau cerah di bagian tengah-bawah layarmu. Pahlawan kita sudah lahir!</p>
 
 </div></article>
 <div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
