@@ -1033,23 +1033,22 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
 <div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
 <article class="page chapter-page"><div class="chapter-body">
 <h2 id="sub-3-3">3.3 Game Over & Layar Kekalahan</h2>
-<p>Kapan permainan berakhir? Tentu saja saat pemain gagal menangkap bola dan bolanya jatuh menembus dasar layar.</p>
+<p>Kapan permainan berakhir? Tentu saja saat pemain gagal menangkap bola dan bolanya jatuh menembus dasar layar. Untuk menghentikan permainan, kita tidak perlu rumus rumit, cukup "nol-kan" saja kecepatan semua benda!</p>
 <div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># ... (kode sebelum Game Loop) ...</span>
 <span class="highlight-line"><span class="n">font_gameover</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s2">"Arial"</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></span>
 <span class="highlight-line"><span class="n">game_over</span> <span class="o">=</span> <span class="kc">False</span></span>
 
 <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
-    <span class="c1"># ... (kode event) ...</span>
+    <span class="c1"># ... (kode event & gerak) ...</span>
 
 <span class="highlight-line">    <span class="k">if</span> <span class="n">ball_y</span> <span class="o">&gt;</span> <span class="n">SCREEN_HEIGHT</span><span class="p">:</span></span>
 <span class="highlight-line">        <span class="n">game_over</span> <span class="o">=</span> <span class="kc">True</span></span>
-
-<span class="highlight-line">    <span class="k">if</span> <span class="ow">not</span> <span class="n">game_over</span><span class="p">:</span></span>
-        <span class="c1"># Geser SELURUH kode gerakan pemain dan bola kamu </span>
-        <span class="c1"># ke dalam blok IF ini (tekan TAB)!</span>
-        <span class="c1"># Sehingga mereka berhenti bergerak saat kalah.</span>
-        <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
-        <span class="c1"># ...</span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="c1"># Trik paling mudah menghentikan game:</span></span>
+<span class="highlight-line">        <span class="c1"># Bekukan (Nol-kan) kecepatan semua benda!</span></span>
+<span class="highlight-line">        <span class="n">ball_speed_x</span> <span class="o">=</span> <span class="mi">0</span></span>
+<span class="highlight-line">        <span class="n">ball_speed_y</span> <span class="o">=</span> <span class="mi">0</span></span>
+<span class="highlight-line">        <span class="n">player_speed</span> <span class="o">=</span> <span class="mi">0</span></span>
 
     <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">COLOR_DARK_BLUE</span><span class="p">)</span>
     <span class="c1"># ... (kode menggambar objek) ...</span>
@@ -1061,7 +1060,7 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
     <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
 </code></pre></div>
 <ul style="margin-top: 1rem; font-size: 0.95rem;">
-  <li><code>if not game_over:</code>: Trik logis agar <em>game</em> berhenti memproses gerakan jika pemain sudah kalah. <strong>Penting:</strong> Pastikan seluruh kode pergerakan digeser ke dalam (menggunakan tombol <code>TAB</code>).</li>
+  <li><code>ball_speed_x = 0</code> (dan lainnya): Ini adalah trik pemrograman yang sangat gampang dipahami pemula. Ketimbang harus mengotak-atik indentasi atau rumus `if` berlipat, cukup ubah variabel kecepatannya menjadi nol, maka semua pergerakan akan langsung beku seketika!</li>
   <li><code>get_width() // 2</code>: Trik matematika cerdas untuk menaruh teks <strong>tepat di tengah layar</strong> (Lebar Layar / 2 dikurangi Setengah Lebar Teks).</li>
 </ul>
 <blockquote class="callout callout-note" style="margin-top: 2rem;">
