@@ -865,10 +865,10 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
 
 <span class="highlight-line">    <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">    <span class="k">if</span> <span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]</span> <span class="ow">or</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_a</span><span class="p">])</span> <span class="ow">and</span> <span class="n">player_x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span></span>
+<span class="highlight-line">    <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_LEFT</span><span class="p">]</span> <span class="ow">and</span> <span class="n">player_x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span></span>
 <span class="highlight-line">        <span class="n">player_x</span> <span class="o">-=</span> <span class="n">player_speed</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">    <span class="k">if</span> <span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_RIGHT</span><span class="p">]</span> <span class="ow">or</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_d</span><span class="p">])</span> <span class="ow">and</span> <span class="n">player_x</span> <span class="o">&lt;</span> <span class="n">SCREEN_WIDTH</span> <span class="o">-</span> <span class="n">player_width</span><span class="p">:</span></span>
+<span class="highlight-line">    <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_RIGHT</span><span class="p">]</span> <span class="ow">and</span> <span class="n">player_x</span> <span class="o">&lt;</span> <span class="n">SCREEN_WIDTH</span> <span class="o">-</span> <span class="n">player_width</span><span class="p">:</span></span>
 <span class="highlight-line">        <span class="n">player_x</span> <span class="o">+=</span> <span class="n">player_speed</span></span>
 
     <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">COLOR_DARK_BLUE</span><span class="p">)</span>
@@ -876,9 +876,9 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
 </code></pre></div>
 <ul style="margin-top: 1rem; font-size: 0.95rem;">
   <li><code>pygame.key.get_pressed()</code>: Mengambil daftar status seluruh tombol <em>keyboard</em> (apakah sedang ditekan atau tidak).</li>
-  <li><code>keys[pygame.K_LEFT]</code>: Mengecek apakah tombol "Panah Kiri" ditahan. (Kita tambahkan <code>K_a</code> dan <code>K_d</code> agar gamenya bisa dimainkan menggunakan tombol WASD juga).</li>
-  <li><code>player_x -= player_speed</code>: Mengurangi koordinat X pemain agar objek bergeser ke kiri.</li>
-  <li><code>player_x &gt; 0</code>: Ini syarat wajib agar pemain tidak menembus batas kiri layar. Posisi X harus selalu lebih besar dari 0! Logika yang sama (<code>player_x &lt; batas kanan</code>) diterapkan agar kotak tidak tembus ke kanan.</li>
+  <li><code>keys[pygame.K_LEFT]</code>: Mengecek apakah tombol "Panah Kiri" di keyboard sedang ditahan.</li>
+  <li><code>player_x -= player_speed</code>: Mengurangi koordinat X pemain agar kotak bergeser ke kiri.</li>
+  <li><code>player_x &gt; 0</code>: Syarat agar pemain tidak menembus batas kiri layar. Posisi X harus selalu lebih besar dari 0! (Berlaku juga untuk batas layar sebelah kanan).</li>
 </ul>
 <p style="margin-top: 1rem;"><em>Hore! Bab pertama selesai dan kamu sudah punya pahlawan hijau yang bisa dikendalikan!</em></p>
 </div>
