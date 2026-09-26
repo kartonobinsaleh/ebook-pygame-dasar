@@ -1095,9 +1095,13 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
         <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">go_text</span><span class="p">,</span> <span class="p">(</span><span class="n">SCREEN_WIDTH</span><span class="o">//</span><span class="mi">2</span> <span class="o">-</span> <span class="n">go_text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
 <span class="highlight-line">        <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">restart_text</span><span class="p">,</span> <span class="p">(</span><span class="n">SCREEN_WIDTH</span><span class="o">//</span><span class="mi">2</span> <span class="o">-</span> <span class="n">restart_text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="mi">280</span><span class="p">))</span></span>
 </code></pre></div>
+<blockquote class="callout callout-warning" style="margin-top: 1.5rem;">
+<p><strong>🚨 AWAS JEBAKAN SPASI (INDENTASI)!</strong></p>
+<p>Pastikan baris <code>if game_over and ...</code> <strong>menjorok tepat sejajar</strong> dengan baris <code>if event.type == pygame.QUIT:</code>. Jika posisinya meleset (terlalu ke kiri atau ke kanan), tombol SPASI tidak akan merespons! Di Python, jarak spasi dari tepi kiri itu ibarat nyawa programmu.</p>
+</blockquote>
 <ul style="margin-top: 1rem; font-size: 0.95rem;">
-  <li><code>event.key == pygame.K_SPACE</code>: Mengecek apakah pemain menekan tombol spasi. Ingat, logika ini ditaruh di dalam blok pengecekan <em>event</em> (di bagian paling atas Game Loop).</li>
-  <li><strong>Konsep Reset:</strong> Alih-alih merestart aplikasi gamenya sepenuhnya, kita hanya perlu mengembalikan seluruh "Variabel Utama" (skor, posisi bola, kecepatan) ke nilai awal seperti saat game baru dijalankan. Begitulah cara game bekerja di balik layar!</li>
+  <li><code>event.key == pygame.K_SPACE</code>: Mengecek apakah pemain menekan tombol spasi. Karena ini memeriksa masukan tombol, ia <strong>wajib</strong> ditaruh di dalam pusaran <code>for event in pygame.event.get():</code>.</li>
+  <li><strong>Konsep Reset:</strong> Alih-alih merestart aplikasi gamenya sepenuhnya, kita hanya perlu mengembalikan seluruh "Variabel Utama" (skor, posisi bola, kecepatan) ke nilai awal seperti saat game baru dijalankan. Begitulah rahasia game bekerja di balik layar!</li>
 </ul>
 
 <blockquote class="callout callout-note" style="margin-top: 2rem;">
