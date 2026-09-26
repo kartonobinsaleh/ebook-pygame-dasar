@@ -721,7 +721,7 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
 <p>Di bab pertama ini, misi kita adalah membuat layar game bisa terbuka, tidak langsung menutup sendiri, dan membuat karakter utama kita (Si Papan Hijau) bisa bergerak ke kanan dan kiri.</p>
 
 <h2 id="sub-1-1">1.1 Membuka Jendela Dunia (Game Window)</h2>
-<p>Setiap game butuh sebuah layar. Mari kita buat layar pertama kita menggunakan Pygame! Coba ketik kode berikut di file <code>main.py</code> kamu:</p>
+<p>Setiap game butuh sebuah layar. Mari kita buat layar pertama kita! Coba ketik kode berikut di file <code>main.py</code> kamu:</p>
 <div class="file-badge"><span class="file-badge-icon">File:</span><code>main.py</code></div><div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -733,8 +733,18 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
 <span class="n">SCREEN_HEIGHT</span> <span class="o">=</span> <span class="mi">500</span>
 <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="n">SCREEN_WIDTH</span><span class="p">,</span> <span class="n">SCREEN_HEIGHT</span><span class="p">))</span>
 <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s2">"Bouncing Ball Catch"</span><span class="p">)</span>
+</code></pre></div>
 
-<span class="c1"># GAME LOOP</span>
+<blockquote class="callout callout-warning" style="margin-top: 1.5rem;">
+<p><strong>Coba Jalankan (Run)!</strong> Apa yang terjadi?</p>
+<p>Layar hitam akan muncul sekilas lalu <strong>langsung menghilang / tertutup sendiri!</strong> Mengapa demikian?</p>
+<p>Ini karena program Python membaca kodemu dari atas ke bawah. Setelah sampai di baris terakhir, tugasnya dianggap selesai dan program langsung dimatikan. Untuk mencegah jendela tertutup seketika, kita membutuhkan sebuah siklus yang disebut <strong>Game Loop</strong>.</p>
+</blockquote>
+
+<h3 style="margin-top: 2rem;">Menambahkan Game Loop (Denyut Nadi Game)</h3>
+<p>Tambahkan kode berikut <strong>tepat di bawah</strong> kode sebelumnya:</p>
+
+<div class="file-badge"><span class="file-badge-icon">Lanjutan File:</span><code>main.py</code></div><div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># 3. GAME LOOP</span>
 <span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
@@ -743,38 +753,34 @@ Buku ini dirancang khusus untuk kamu (siswa SMP/SMA) yang baru mulai belajar <em
             
     <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
 
-<span class="c1"># Membersihkan program</span>
+<span class="c1"># 4. Membersihkan program</span>
 <span class="n">pygame</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </code></pre></div>
-
+<p style="margin-top: 1rem;"><strong>Jalankan Sekali Lagi!</strong> Sekarang jendelanya akan terus terbuka dengan stabil sampai kamu mengklik tombol silang merah ("X"). Selamat, mesin gamemu sudah menyala!</p>
 </div></article>
+
 <div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
 <article class="page chapter-page"><div class="chapter-body">
+
 <h3>Penjelasan Kode Secara Detail:</h3>
 <ul>
-  <li><code>import pygame</code> dan <code>import sys</code>: Kita sedang memanggil "alat-alat" (library) yang sudah disiapkan oleh Python. <code>pygame</code> adalah mesin utama untuk membuat game, sedangkan <code>sys</code> dipakai nanti untuk menutup program ke sistem operasi.</li>
-  <li><code>pygame.init()</code>: Wajib dipanggil! Ini ibarat "menyalakan mesin mobil" sebelum kita injak gas. Fungsi ini mempersiapkan semua hal dasar yang dibutuhkan pygame.</li>
-  <li><code>SCREEN_WIDTH</code> dan <code>SCREEN_HEIGHT</code>: Variabel penyimpan angka ukuran layar. Di sini kita pakai 600 untuk lebar, dan 500 untuk tinggi.</li>
-  <li><code>pygame.display.set_mode(...)</code>: Perintah yang langsung mencetak / membuka sebuah jendela (window) di komputermu dengan ukuran yang sudah kita tentukan.</li>
-  <li><code>pygame.display.set_caption(...)</code>: Untuk mengubah teks judul yang ada di bagian atas (title bar) jendela program.</li>
-</ul>
-
-<blockquote class="callout callout-note">
-<p><strong>Kenapa butuh Game Loop (while running)?</strong> <br>
-Game Loop ibarat kamera film yang merekam sekian <em>frame</em> per detik. Kalau kamu hapus bagian <code>while running:</code> ke bawah, jendela game akan langsung tertutup dalam sekejap mata karena program menganggap tugasnya sudah selesai.</p>
-</blockquote>
-
-<ul>
-  <li><code>pygame.event.get()</code>: Di dalam loop, ini berfungsi mengecek semua tindakan pengguna (menekan keyboard, mengklik mouse). Jika penguna menekan tombol "X" di pojok kanan atas, eventnya bernama <code>pygame.QUIT</code>, lalu loop dihentikan (<code>running = False</code>).</li>
-  <li><code>pygame.display.flip()</code>: Sangat penting! Perintah ini me-<em>refresh</em> atau memperbarui apa pun yang kita gambar ke layar secara terus-menerus.</li>
-  <li><code>pygame.quit()</code> &amp; <code>sys.exit()</code>: Setelah keluar dari Game Loop, kita harus "mematikan mesin" pygame dengan benar agar jendela bisa tertutup dengan aman dan tidak membuat laptopmu <em>hang</em>.</li>
+  <li><code>import pygame</code> dan <code>import sys</code>: Memanggil "alat-alat" yang sudah disiapkan oleh Python.</li>
+  <li><code>pygame.init()</code>: <strong>Sangat Penting!</strong> Ini ibarat "menyalakan mesin mobil" sebelum diinjak gas. Fungsi ini mempersiapkan semua sistem dasar pygame.</li>
+  <li><code>pygame.display.set_mode(...)</code>: Perintah yang langsung mencetak / membuka sebuah jendela berukuran 600x500 pixel di layar komputermu.</li>
 </ul>
 
 <hr/>
-</div></article>
-<div class="page-divider" aria-hidden="true"><span></span><i></i><span></span></div>
-<article class="page chapter-page"><div class="chapter-body">
+
+<h4>Mengapa Game Loop Begitu Penting?</h4>
+<ul>
+  <li><code>while running:</code>: Game Loop ibarat satpam yang sedang berjaga. Dia melek terus-menerus memutar kode di dalamnya agar game tetap hidup puluhan kali per detik (FPS).</li>
+  <li><code>pygame.event.get()</code>: Bertugas menangkap "kejadian" yang dilakukan pemain (seperti menekan keyboard/mouse).</li>
+  <li><code>if event.type == pygame.QUIT:</code>: Mengecek apakah pemain mengklik tombol silang merah ("X") di pojok jendela. Jika iya, loop dihentikan (<code>running = False</code>) dan game dimatikan. Tanpa baris ini, jendelamu akan <em>Not Responding</em> saat ditutup.</li>
+  <li><code>pygame.display.flip()</code>: Ini ibarat menekan tombol "Refresh". Semua gambar yang akan kita buat nanti, harus di-<em>flip</em> agar bisa dilihat oleh pemain.</li>
+</ul>
+
+<hr/>
 <h2 id="sub-1-2">1.2 Mengecat Layar & Frame Rate</h2>
 <p>Sekarang kita punya layar, tapi warnanya masih hitam kelam. Mari kita beri warna Biru Gelap dan atur kecepatan game agar tidak terlalu ngebut.</p>
 <div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">python</span></div><pre><span></span><code><span class="c1"># Pengatur Kecepatan Frame (FPS) ditambahkan di atas loop</span>
