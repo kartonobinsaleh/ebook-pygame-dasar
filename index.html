@@ -834,15 +834,27 @@ body {
   
   <li style="margin-bottom: 1.5rem;"><strong>Install Visual Studio Code:</strong> Unduh dan instal <em>code editor</em> ini melalui halaman resminya di <a href="https://code.visualstudio.com/Download" target="_blank" style="font-weight: 600;">code.visualstudio.com/Download</a>.</li>
   
-  <li style="margin-bottom: 1.5rem;"><strong>Buka Folder di VSCode:</strong> Buat sebuah folder baru (misalnya <code>game_ku</code>) di komputermu. Buka VSCode, lalu klik menu <em>File &gt; Open Folder</em> dan pilih folder tersebut.</li>
+  <li style="margin-bottom: 1.5rem;"><strong>Buka Folder di VSCode:</strong>
+    <ol type="a" style="margin-top: 0.5rem; margin-bottom: 0;">
+      <li style="margin-bottom: 0.5rem;">Buat sebuah folder baru (misalnya <code>game_ku</code>) di komputermu.</li>
+      <li style="margin-bottom: 0.5rem;">Buka aplikasi <strong>VSCode</strong>.</li>
+      <li style="margin-bottom: 0;">Klik menu <strong>File &gt; Open Folder</strong> (atau <em>Open</em> jika di Mac) dan pilih folder yang baru kamu buat tadi.</li>
+    </ol>
+  </li>
   
-  <li style="margin-bottom: 1.5rem;"><strong>Buat Virtual Environment (Venv):</strong> Ini penting agar proyekmu rapi! Buka terminal di dalam VSCode (tekan <code>Ctrl + `</code> atau menu <em>Terminal &gt; New Terminal</em>). Ketik perintah berikut lalu tekan Enter:
-    <div class="hl code-block" style="margin-top: 0.8rem;"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">terminal</span></div><pre><span></span><code>python -m venv venv
+  <li style="margin-bottom: 1.5rem;"><strong>Buat Virtual Environment (Venv):</strong> Ini penting agar proyekmu rapi!
+    <ol type="a" style="margin-top: 0.5rem; margin-bottom: 0;">
+      <li style="margin-bottom: 0.5rem;">Buka terminal di dalam VSCode dengan menekan <code>Ctrl + `</code> (atau klik menu <strong>Terminal &gt; New Terminal</strong>).</li>
+      <li style="margin-bottom: 0.5rem;">Ketik perintah berikut di terminal lalu tekan <strong>Enter</strong>:
+        <div class="hl code-block" style="margin-top: 0.8rem; margin-bottom: 0.8rem;"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">terminal</span></div><pre><span></span><code>python -m venv venv
 </code></pre></div>
-    Tunggu beberapa detik. Setelah itu, <strong>aktifkan</strong> venv-nya dengan mengetikkan:
-    <div class="hl code-block" style="margin-top: 0.8rem;"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">terminal</span></div><pre><span></span><code>venv\Scripts\activate
+      </li>
+      <li style="margin-bottom: 0;">Tunggu beberapa detik. Setelah itu, <strong>aktifkan</strong> venv-nya dengan mengetikkan:
+        <div class="hl code-block" style="margin-top: 0.8rem; margin-bottom: 0.8rem;"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">terminal</span></div><pre><span></span><code>venv\Scripts\activate
 </code></pre></div>
-    <em>(Jika kamu pengguna Mac/Linux, ketik: <code>source venv/bin/activate</code>)</em>
+        <em>(Catatan: Jika kamu pengguna Mac/Linux, ketik: <code>source venv/bin/activate</code>)</em>
+      </li>
+    </ol>
   </li>
   
   <li style="margin-bottom: 1.5rem;"><strong>Install Pygame:</strong> Setelah venv aktif (ditandai dengan munculnya tulisan <code>(venv)</code> hijau di terminal), ketikkan perintah ini dan tekan Enter:
