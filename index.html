@@ -826,13 +826,30 @@ body {
 <p>Ikuti 3 langkah cepat ini agar komputermu siap membuat game:</p>
 
 <ol>
-  <li><strong>Install Python & VSCode:</strong> Pastikan kamu sudah mengunduh dan menginstal <a href="https://www.python.org/downloads/" target="_blank">Python</a> dan <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>.</li>
-  <li><strong>Buka Terminal di VSCode:</strong> Buat sebuah folder baru bernama <code>game_ku</code>, lalu buka folder tersebut di VSCode. Tekan <code>Ctrl + `</code> (atau menu Terminal > New Terminal) untuk membuka terminal di bawah layar.</li>
-  <li><strong>Install Pygame:</strong> Ketikkan perintah ajaib ini di terminalmu lalu tekan Enter:</li>
-</ol>
-
-<div class="hl code-block"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">terminal</span></div><pre><span></span><code>pip install pygame
+  <li style="margin-bottom: 1.5rem;"><strong>Install Python 3.13:</strong> Untuk pengguna Windows, cara termudah adalah menginstalnya langsung melalui <strong>Microsoft Store</strong>. Buka Microsoft Store di komputermu, cari "Python 3.13", lalu klik tombol <em>Get</em> / Dapatkan.
+  <img src="images/install-python.png" alt="Install Python 3.13 di Microsoft Store" style="max-width: 100%; border-radius: 8px; margin-top: 0.8rem; margin-bottom: 1rem; border: 1px solid var(--paper-line); display: block;">
+  Setelah proses instalasi selesai, buka <strong>Terminal</strong> (atau Command Prompt) dan ketik <code>python --version</code> untuk memastikan Python sudah terpasang dengan benar.
+  <img src="images/version.png" alt="Cek versi Python" style="max-width: 100%; border-radius: 8px; margin-top: 0.8rem; border: 1px solid var(--paper-line); display: block;">
+  </li>
+  
+  <li style="margin-bottom: 1.5rem;"><strong>Install Visual Studio Code:</strong> Unduh dan instal <em>code editor</em> ini melalui halaman resminya di <a href="https://code.visualstudio.com/Download" target="_blank" style="font-weight: 600;">code.visualstudio.com/Download</a>.</li>
+  
+  <li style="margin-bottom: 1.5rem;"><strong>Buka Folder di VSCode:</strong> Buat sebuah folder baru (misalnya <code>game_ku</code>) di komputermu. Buka VSCode, lalu klik menu <em>File &gt; Open Folder</em> dan pilih folder tersebut.</li>
+  
+  <li style="margin-bottom: 1.5rem;"><strong>Buat Virtual Environment (Venv):</strong> Ini penting agar proyekmu rapi! Buka terminal di dalam VSCode (tekan <code>Ctrl + `</code> atau menu <em>Terminal &gt; New Terminal</em>). Ketik perintah berikut lalu tekan Enter:
+    <div class="hl code-block" style="margin-top: 0.8rem;"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">terminal</span></div><pre><span></span><code>python -m venv venv
 </code></pre></div>
+    Tunggu beberapa detik. Setelah itu, <strong>aktifkan</strong> venv-nya dengan mengetikkan:
+    <div class="hl code-block" style="margin-top: 0.8rem;"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">terminal</span></div><pre><span></span><code>venv\Scripts\activate
+</code></pre></div>
+    <em>(Jika kamu pengguna Mac/Linux, ketik: <code>source venv/bin/activate</code>)</em>
+  </li>
+  
+  <li style="margin-bottom: 1.5rem;"><strong>Install Pygame:</strong> Setelah venv aktif (ditandai dengan munculnya tulisan <code>(venv)</code> hijau di terminal), ketikkan perintah ini dan tekan Enter:
+    <div class="hl code-block" style="margin-top: 0.8rem;"><div class="code-chrome"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">terminal</span></div><pre><span></span><code>pip install pygame
+</code></pre></div>
+  </li>
+</ol>
 
 <blockquote class="callout callout-note" style="margin-top: 2rem;">
 <p><strong>Sudah Siap? 🚀</strong><br>
